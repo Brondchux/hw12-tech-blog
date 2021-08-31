@@ -1,9 +1,18 @@
 const express = require("express");
 const app = express();
+const path = require("path");
+const exphbs = require("express-handlebars");
 const PORT = process.env.PORT || 7800;
 
+// Static setup
+app.use(express.static(path.join(__dirname, "public")));
+
+// Handlebars setup
+app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
+
 app.get("/", (req, res) => {
-	res.json("Welcome to tech blog");
+	res.render("home");
 });
 
 app.listen(PORT, () => {
