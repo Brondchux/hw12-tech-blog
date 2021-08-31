@@ -1,3 +1,41 @@
 body {
-	background-color: red;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+}
+
+.navs {
+	display: flex;
+}
+
+.navs li {
+	flex: 1;
+	background-color: #ffff00;
+	list-style-type: none;
+	text-align: center;
+	font-size: 1.3rem;
+	padding: 2px;
+}
+
+.navs li:first-child {
+	border-radius: 5px 0 0 5px;
+}
+
+.navs li:last-child {
+	border-radius: 0 5px 5px 0;
+}
+
+.navs li a {
+	display: block;
+	text-decoration: none;
+	color: #18a2b8;
+}
+
+.navs li a:hover {
+	color: #000000;
+}
+
+.text-yellow {
+	color: #ffff00;
 }
