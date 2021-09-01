@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { User } = require("../../models");
 
 // GET: /api/user
 router.get("/", (req, res) => {
@@ -6,8 +7,22 @@ router.get("/", (req, res) => {
 });
 
 // POST: /api/user
-router.post("/", (req, res) => {
-	res.status(200).json({ ...req.body, message: "go" });
+router.post("/", async (req, res) => {
+	console.log("req.body: ", req.body);
+	const newUser = await User.create(req.body);
+	let responseBasket;
+	if (!newUser) {
+		responseBasket = {
+			error: true,
+			message: "Unable to create account, try again.",
+		};
+	} else {
+		responseBasket = {
+			error: false,
+			message: "Account created! Redirecting, please wait...",
+		};
+	}
+	res.status(200).json(responseBasket);
 });
 
 module.exports = router;

@@ -59,6 +59,11 @@ const init = async (event) => {
 		body: JSON.stringify(newUser),
 	}).then((data) => data.json());
 	console.log("Response is: ", response);
+
+	// Redirect to dashboard page
+	if (response) {
+		// window.location.replace("/dashboard");
+	}
 };
 
 // INTERACTIONS ==============================
