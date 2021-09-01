@@ -1,7 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
 const exphbs = require("express-handlebars");
+const sequelize = require("./config/connection");
+
+// Port setup
 const PORT = process.env.PORT || 7800;
 
 // TODO: Remeber to keep this line below app.use(sessionVariable)
@@ -19,6 +23,8 @@ app.get("/", (req, res) => {
 	res.render("home");
 });
 
-app.listen(PORT, () => {
-	console.log(`Now listening on http://localhost:${PORT}`);
+sequelize.sync({ force: false }).then(() => {
+	app.listen(PORT, () => {
+		console.log(`Now listening on http://localhost:${PORT}`);
+	});
 });
