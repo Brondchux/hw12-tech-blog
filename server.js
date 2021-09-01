@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 7800;
 
 // TODO: Remeber to keep this line below app.use(sessionVariable)
 const routes = require("./controllers");
-app.use(routes);
 
 // Static setup
 app.use(express.static(path.join(__dirname, "public")));
@@ -19,9 +18,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
-app.get("/", (req, res) => {
-	res.render("home");
-});
+// Inputs setup
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Routes setup
+app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
 	app.listen(PORT, () => {

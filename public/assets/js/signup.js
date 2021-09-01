@@ -53,10 +53,12 @@ const init = async (event) => {
 	// Make api call to userRoutes
 	const response = await fetch(`/api/user`, {
 		method: "POST",
-		header: "application/json",
+		headers: {
+			"Content-Type": "application/json",
+		},
 		body: JSON.stringify(newUser),
-	});
-	// console.log("Response is: ", response);
+	}).then((data) => data.json());
+	console.log("Response is: ", response);
 };
 
 // INTERACTIONS ==============================
