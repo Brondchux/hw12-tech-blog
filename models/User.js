@@ -30,10 +30,16 @@ User.init(
 	},
 	{
 		hooks: {
-			beforeCreate: async (newUserData) => {
-				newUserData.email = await newUserData.email.toLowerCase();
-				newUserData.password = await bcrypt.hash(newUserData.password, 10);
-				return newUserData;
+			beforeBulkCreate: async (newUserData) => {
+				for (const user of newUserData) {
+					user.email = await user.email.toLowerCase();
+					user.password = await bcrypt.hash(user.password, 10);
+				}
+			},
+			beforeCreate: async (user) => {
+				user.email = await user.email.toLowerCase();
+				user.password = await bcrypt.hash(user.password, 10);
+				return user;
 			},
 			beforeUpdate: async (updatedUserData) => {
 				newUserData.email = await newUserData.email.toLowerCase();
