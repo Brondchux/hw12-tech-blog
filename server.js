@@ -4,6 +4,10 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const PORT = process.env.PORT || 7800;
 
+// TODO: Remeber to keep this line below app.use(sessionVariable)
+const routes = require("./controllers");
+app.use(routes);
+
 // Static setup
 app.use(express.static(path.join(__dirname, "public")));
 

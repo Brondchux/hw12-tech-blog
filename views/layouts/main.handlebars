@@ -28,13 +28,13 @@
 		{{! Custom CSS }}
 		<link rel="stylesheet" href="/assets/css/style.css" />
 	</head>
-	<body>
+	<body class="container-fluid">
 		<nav class="row bg-info">
 			<div class="col-6 pt-3">
 				<ul class="navs">
 					<li><a href="/">Home</a></li>
 					<li><a href="/dashboard">Dashboard</a></li>
-					<li><a href="/logout">Logout</a></li>
+					<li><a href="/login">Login</a></li>
 				</ul>
 			</div>
 			<div class="col-6 text-center">
@@ -43,5 +43,11 @@
 					>O</span>G</h1>
 			</div>
 		</nav>
+
+		<div class="row my-5">
+			<div class="col-12">
+				{{{body}}}
+			</div>
+		</div>
 	</body>
 </html>
