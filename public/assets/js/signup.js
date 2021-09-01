@@ -1,8 +1,8 @@
 // DEPENDENCIES ==============================
-const username = document.querySelector("#username").value;
-const email = document.querySelector("#email").value;
-const password = document.querySelector("#password").value;
-const cPassword = document.querySelector("#cPassword").value;
+const username = document.querySelector("#username");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
+const cPassword = document.querySelector("#cPassword");
 const signupBtn = document.querySelector("#signupBtn");
 let alertMessage = document.querySelector("#alertMessage");
 
@@ -12,6 +12,8 @@ let alertMessage = document.querySelector("#alertMessage");
 const passwordsMatch = (password, confirmPassword) =>
 	password === confirmPassword;
 
+const passwordLength = (password) => password.length > 7;
+
 const checkValues = (field) => {
 	const valueExists = field && field.length > 0;
 	alertMessage.classList.add("text-success");
@@ -19,11 +21,42 @@ const checkValues = (field) => {
 	return valueExists;
 };
 
-const init = (event) => {
+const validateUserInputs = () => {
+	alertMessage.textContent = "";
+	if (!checkValues(username.value))
+		return (alertMessage.textContent = "Username is required!");
+	if (!checkValues(email.value))
+		return (alertMessage.textContent = "Email is required!");
+	if (!checkValues(password.value))
+		return (alertMessage.textContent = "Password is required!");
+	if (!checkValues(cPassword.value))
+		return (alertMessage.textContent = "Confirm password is required!");
+	if (!passwordsMatch(password.value, cPassword.value))
+		return (alertMessage.textContent = "Passwords do not match!");
+	if (!passwordLength(password.value))
+		return (alertMessage.textContent =
+			"Password must be at least 8 characters long!");
+	return true;
+};
+
+const init = async (event) => {
 	event.preventDefault();
-	console.log("username: ", username);
-	console.log("email: ", email);
-	if (!checkValues(email)) alertMessage.textContent = "Email is required!";
+	if (validateUserInputs() !== true) return;
+
+	// Prepare new user object
+	const newUser = {
+		username: username.value,
+		email: email.value,
+		password: password.value,
+	};
+
+	// Make api call to userRoutes
+	const response = await fetch(`/api/user`, {
+		method: "POST",
+		header: "application/json",
+		body: JSON.stringify(newUser),
+	});
+	// console.log("Response is: ", response);
 };
 
 // INTERACTIONS ==============================
