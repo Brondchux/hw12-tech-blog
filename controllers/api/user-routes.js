@@ -17,6 +17,14 @@ router.post("/", async (req, res) => {
 			message: "Unable to create account, try again.",
 		};
 	} else {
+		// Save to session
+		req.session.save(() => {
+			let newUserObj = newUser.get({ plain: true });
+			delete newUserObj.password;
+			req.session.user = newUserObj;
+			req.session.loggedIn = true;
+		});
+
 		responseBasket = {
 			error: false,
 			message: "Account created! Redirecting, please wait...",
