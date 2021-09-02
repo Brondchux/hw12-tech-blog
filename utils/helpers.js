@@ -1,6 +1,8 @@
+const moment = require("moment");
+
 module.exports = {
 	dateFormatter: (date) => {
-		return date.toLocaleDateString();
+		return moment(date).format("MM d 'YY hh:mm:ss A");
 	},
 
 	currentYear: () => {
