@@ -11,7 +11,9 @@
                     </div>
                     <div class="card-body">
                         <p>{{postData.content}}</p>
-                        <p>{{postData.comment.content}}</p>
+                        {{#each postData.comments as |comment|}}
+                            {{> comment}}
+                        {{/each}}
                         <div class="text-right small text-info">
                             <i class="fas fa-user"></i> {{postData.user.username}} 
                             <i class="fas fa-clock"></i> {{dateFormatter postData.createdAt}}
