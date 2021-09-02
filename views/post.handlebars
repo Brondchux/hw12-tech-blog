@@ -1,0 +1,29 @@
+{{!-- Import header --}}
+{{> header}}
+
+<div class="container my-5">
+	<div class="row">
+		<div class="col-12">
+			{{#if postData}}
+                <div class="card mb-5">
+                    <div class="card-header text-info">
+                        <h4>{{postData.title}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>{{postData.content}}</p>
+                        <p>{{postData.comment.content}}</p>
+                        <div class="text-right small text-info">
+                            <i class="fas fa-user"></i> {{postData.user.username}} 
+                            <i class="fas fa-clock"></i> {{dateFormatter postData.createdAt}}
+                        </div>
+                    </div>
+                </div>
+			{{else}}
+				<p class="text-center text-info">No blog postData found for that identifier! ):</p>
+			{{/if}}
+		</div>
+	</div>
+</div>
+
+{{!-- Import footer --}}
+{{> footer}}

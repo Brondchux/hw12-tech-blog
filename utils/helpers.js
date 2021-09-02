@@ -2,7 +2,7 @@ const moment = require("moment");
 
 module.exports = {
 	dateFormatter: (date) => {
-		return moment(date).format("MM d 'YY hh:mm:ss A");
+		return moment(date).format("MMM DD 'YY hh:mm A");
 	},
 
 	currentYear: () => {
