@@ -4,7 +4,7 @@
 			<li><a href="/">Home</a></li>
 			{{#if loggedIn}}
 				<li><a href="/dashboard">Dashboard</a></li>
-				<li><a href="/logout">Logout</a></li>
+				<li><a href="#" id="logoutBtn">Logout</a></li>
 			{{else}}
 				<li><a href="/login">Login</a></li>
 			{{/if}}
@@ -16,4 +16,5 @@
 			<i class="fas fa-laptop-code text-yellow"></i>
 		</h1>
 	</div>
+	<script src="/assets/js/logout.js"></script>
 </nav>
