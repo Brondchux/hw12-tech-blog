@@ -18,10 +18,17 @@
                             <i class="fas fa-user"></i> {{postData.user.username}} 
                             <i class="fas fa-clock"></i> {{dateFormatter postData.createdAt}}
                         </div>
+                        {{!-- Add Comment --}}
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <textarea id="commentBox" rows="4" class="form-control" placeholder="Add your comment"></textarea>
+                                <button class="btn btn-info mt-2 btn-lg">Submit</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 			{{else}}
-				<p class="text-center text-info">No blog postData found for that identifier! ):</p>
+				<p class="text-center text-info">No blog post found for that identifier! ):</p>
 			{{/if}}
 		</div>
 	</div>

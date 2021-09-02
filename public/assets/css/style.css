@@ -52,3 +52,7 @@ nav {
 .text-yellow {
 	color: #ffff00;
 }
+
+textarea {
+	resize: none;
+}
