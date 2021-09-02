@@ -7,6 +7,8 @@ const sequelize = require("./config/connection");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const routes = require("./controllers");
+// Import the custom helper methods
+const helpers = require("./utils/helpers");
 
 // Port setup
 const PORT = process.env.PORT || 7800;
@@ -27,7 +29,8 @@ app.use(session(sess));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Handlebars setup
-app.engine("handlebars", exphbs());
+const hbs = exphbs.create({ helpers });
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // Inputs setup
