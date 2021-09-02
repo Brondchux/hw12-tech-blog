@@ -1,7 +1,11 @@
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-	res.render("login");
+	if (req.session.loggedIn) {
+		res.redirect("/");
+	} else {
+		res.render("login");
+	}
 });
 
 module.exports = router;

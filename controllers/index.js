@@ -10,5 +10,10 @@ router.use("/api", apiRoutes);
 router.use("/login", loginRoutes);
 router.use("/signup", signupRoutes);
 router.use("/dashboard", dashboardRoutes);
+router.use("/logout", (req, res) => {
+	if (req.session.loggedIn) {
+		req.session.destroy();
+	}
+});
 
 module.exports = router;

@@ -27,13 +27,13 @@ router.post("/", async (req, res) => {
 			delete newUserObj.password;
 			req.session.user = newUserObj;
 			req.session.loggedIn = true;
-		});
 
-		responseBasket = {
-			error: false,
-			message: "Account created! Redirecting, please wait...",
-		};
-		return res.status(201).json(responseBasket);
+			responseBasket = {
+				error: false,
+				message: "Account created! Redirecting, please wait...",
+			};
+			return res.status(201).json(responseBasket);
+		});
 	} catch (error) {
 		responseBasket = {
 			error: true,
@@ -64,13 +64,13 @@ router.post("/login", async (req, res) => {
 		req.session.save(() => {
 			req.session.user = userData;
 			req.session.loggedIn = true;
-		});
 
-		responseBasket = {
-			error: false,
-			message: "Login successful! Redirecting, please wait...",
-		};
-		return res.status(201).json(responseBasket);
+			responseBasket = {
+				error: false,
+				message: "Login successful! Redirecting, please wait...",
+			};
+			return res.status(201).json(responseBasket);
+		});
 	} catch (err) {
 		responseBasket = {
 			error: true,
