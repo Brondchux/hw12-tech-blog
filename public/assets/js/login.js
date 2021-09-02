@@ -8,19 +8,22 @@ let alertMessage = document.querySelector("#alertMessage");
 
 // FUNCTIONS ==============================
 const checkValues = (field) => {
-	const valueExists = field && field.length > 0;
-	alertMessage.classList.add("text-success");
-	if (!valueExists) alertMessage.classList.add("text-danger");
-	return valueExists;
+	return field && field.length > 0;
 };
 
 const validateUserInputs = () => {
 	alertMessage.textContent = "";
+	alertMessage.classList.add("text-info");
 	if (!checkValues(email.value))
 		return (alertMessage.textContent = "Email is required!");
 	if (!checkValues(password.value))
 		return (alertMessage.textContent = "Password is required!");
 	return true;
+};
+
+const resetFields = () => {
+	email.value = "";
+	password.value = "";
 };
 
 const init = async (event) => {
@@ -41,11 +44,15 @@ const init = async (event) => {
 		},
 		body: JSON.stringify(loginUser),
 	}).then((data) => data.json());
-	console.log("Login response is: ", response);
+	alertMessage.textContent = response ? response.message : "";
 
 	// Redirect to dashboard page
-	if (response) {
-		// window.location.replace("/dashboard");
+	if (response && !response.error) {
+		alertMessage.classList.add("text-success");
+		resetFields();
+		setTimeout(() => {
+			window.location = "/dashboard";
+		}, 2000);
 	}
 };
 

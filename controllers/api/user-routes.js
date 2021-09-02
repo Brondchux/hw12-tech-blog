@@ -8,30 +8,40 @@ router.get("/", (req, res) => {
 
 // POST: /api/user
 router.post("/", async (req, res) => {
-	const newUser = await User.create(req.body);
 	let responseBasket;
-	if (!newUser) {
+
+	try {
+		const newUser = await User.create(req.body);
+		if (!newUser) {
+			responseBasket = {
+				status: res.status,
+				error: true,
+				message: "Unable to create account, try again.",
+			};
+			return res.status(200).json(responseBasket);
+		}
+
+		// Save to session
+		req.session.save(() => {
+			let newUserObj = newUser.get({ plain: true });
+			delete newUserObj.password;
+			req.session.user = newUserObj;
+			req.session.loggedIn = true;
+		});
+
 		responseBasket = {
-			status: res.status,
-			error: true,
-			message: "Unable to create account, try again.",
+			error: false,
+			message: "Account created! Redirecting, please wait...",
 		};
-		return res.status(200).json(responseBasket);
+		return res.status(201).json(responseBasket);
+	} catch (error) {
+		responseBasket = {
+			error: true,
+			message: "Something went wrong! Please try again.",
+		};
+
+		return res.status(408).json(responseBasket);
 	}
-
-	// Save to session
-	req.session.save(() => {
-		let newUserObj = newUser.get({ plain: true });
-		delete newUserObj.password;
-		req.session.user = newUserObj;
-		req.session.loggedIn = true;
-	});
-
-	responseBasket = {
-		error: false,
-		message: "Account created! Redirecting, please wait...",
-	};
-	return res.status(201).json(responseBasket);
 });
 
 // POST: /api/user/login
@@ -63,7 +73,7 @@ router.post("/login", async (req, res) => {
 		return res.status(201).json(responseBasket);
 	} catch (err) {
 		responseBasket = {
-			error: false,
+			error: true,
 			message: "Something went wrong! Please try again.",
 		};
 

@@ -15,14 +15,12 @@ const passwordsMatch = (password, confirmPassword) =>
 const passwordLength = (password) => password.length > 7;
 
 const checkValues = (field) => {
-	const valueExists = field && field.length > 0;
-	alertMessage.classList.add("text-success");
-	if (!valueExists) alertMessage.classList.add("text-danger");
-	return valueExists;
+	return field && field.length > 0;
 };
 
 const validateUserInputs = () => {
 	alertMessage.textContent = "";
+	alertMessage.classList.add("text-danger");
 	if (!checkValues(username.value))
 		return (alertMessage.textContent = "Username is required!");
 	if (!checkValues(email.value))
@@ -37,6 +35,13 @@ const validateUserInputs = () => {
 		return (alertMessage.textContent =
 			"Password must be at least 8 characters long!");
 	return true;
+};
+
+const resetFields = () => {
+	username.value = "";
+	email.value = "";
+	password.value = "";
+	cPassword.value = "";
 };
 
 const init = async (event) => {
@@ -58,11 +63,15 @@ const init = async (event) => {
 		},
 		body: JSON.stringify(newUser),
 	}).then((data) => data.json());
-	console.log("Response is: ", response);
+	alertMessage.textContent = response ? response.message : "";
 
 	// Redirect to dashboard page
-	if (response) {
-		// window.location.replace("/dashboard");
+	if (response && !response.error) {
+		alertMessage.classList.add("text-success");
+		resetFields();
+		setTimeout(() => {
+			window.location = "/dashboard";
+		}, 2000);
 	}
 };
 
