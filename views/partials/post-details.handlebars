@@ -27,6 +27,15 @@
 								</button>
 							</div>
 						</div>
+					{{else}}
+						<div class="row">
+							<div class="col-12 text-center text-sm-right">
+								<i class="fas fa-user"></i>
+								{{user.username}}
+								<i class="fas fa-clock"></i>
+								{{dateFormatter createdAt}}
+							</div>
+						</div>
 					{{/if}}
 				</div>
 			</div>
