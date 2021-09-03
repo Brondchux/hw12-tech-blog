@@ -28,6 +28,7 @@ router.get("/post/:id", async (req, res) => {
 	const postData = post ? post.get({ plain: true }) : null;
 	res.render("post", {
 		loggedIn: req.session.loggedIn,
+		userId: req.session.user ? req.session.user.id : null,
 		postData,
 	});
 });
