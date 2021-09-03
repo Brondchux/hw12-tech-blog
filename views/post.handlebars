@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <p>{{postData.content}}</p>
                         {{#each postData.comments as |comment|}}
-                            {{> comment}}
+                            {{> comment-details}}
                         {{/each}}
                         <div class="text-right small text-info">
                             <i class="fas fa-user"></i> {{postData.user.username}} 

@@ -14,8 +14,18 @@
 		</div>
 	</div>
 
+	<div class="row mt-2 mb-5">
+		<div class="col-12">
+			<textarea id="commentBox" rows="4" data-post-id="{{postData.id}}" data-user-id="{{userId}}" class="form-control" placeholder="Add your comment"></textarea>
+			<button class="btn btn-info mt-2 btn-lg" id="commentBtn">Submit</button>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
+			{{#each userPosts as |post|}}
+				{{> post-details}}
+			{{/each}}
 		</div>
 	</div>
 </div>

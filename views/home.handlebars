@@ -7,19 +7,7 @@
 			{{#if postsData}}
 				{{#each postsData as |post|}}
 				<a href="/post/{{post.id}}">
-					<div class="card mb-5">
-						<div class="card-header text-info">
-							<h4>{{post.title}}</h4>
-						</div>
-						<div class="card-body">
-							<p>{{post.content}}</p>
-							<p>{{post.comment.content}}</p>
-							<div class="text-right small text-info">
-								<i class="fas fa-user"></i> {{post.user.username}} 
-								<i class="fas fa-clock"></i> {{dateFormatter post.createdAt}}
-							</div>
-						</div>
-					</div>
+					{{> post-details}}
 				</a>
 				{{/each}}
 			{{else}}

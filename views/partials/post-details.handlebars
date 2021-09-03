@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card mb-5">
+			<div class="card-header text-info">
+				<h4>{{title}}</h4>
+			</div>
+			<div class="card-body">
+				<p>{{content}}</p>
+				<p>{{comment.content}}</p>
+				<div class="small text-info">
+					{{#if postOwner}}
+						<div class="row">
+							<div class="col-sm-6 col-12 text-center text-sm-left mb-2">
+								<i class="fas fa-user"></i>
+								{{user.username}}
+								<i class="fas fa-clock"></i>
+								{{dateFormatter createdAt}}
+							</div>
+							<div class="col-sm-6 col-12 text-center text-sm-right">
+								<button class="btn btn-outline-info btn-sm">
+									<i class="fas fa-edit"></i>
+									edit
+								</button>
+								<button class="btn btn-outline-danger btn-sm">
+									<i class="fas fa-trash"></i>
+									delete
+								</button>
+							</div>
+						</div>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
