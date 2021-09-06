@@ -43,4 +43,4 @@ const initComment = async (event) => {
 	}
 };
 // INTERACTIONS ==============================
-commentBtn.addEventListener("click", initComment);
+if (commentBtn) commentBtn.addEventListener("click", initComment);
