@@ -2,7 +2,6 @@
 const postTitle = document.querySelector("#post-title");
 const postContent = document.querySelector("#post-content");
 const postBtn = document.querySelector("#post-btn");
-const editPostBtns = document.querySelectorAll(".edit-post-btn");
 const deletePostBtns = document.querySelectorAll(".delete-post-btn");
 let alertMessage = document.querySelector("#alertMessage");
 
@@ -60,7 +59,7 @@ const createPost = async (event) => {
 // INTERACTIONS ==============================
 
 // Create post
-postBtn.addEventListener("click", createPost);
+if (postBtn) postBtn.addEventListener("click", createPost);
 
 // Delete post
 deletePostBtns.forEach((deletBtn) => {

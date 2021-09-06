@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Post, User } = require("../models");
 
+// GET: /dashboard
 router.get("/", async (req, res) => {
 	let userPosts;
 	try {
@@ -25,4 +26,20 @@ router.get("/", async (req, res) => {
 	});
 });
 
+// GET: /dashboard/:id
+router.get("/:id", async (req, res) => {
+	let singlePost;
+	try {
+		const singlePostData = await Post.findByPk(req.params.id, {});
+		singlePost = singlePostData.get({ plain: true });
+	} catch (error) {
+		singlePost = null;
+	}
+	res.render("dashboard", {
+		userData: req.session.user,
+		loggedIn: req.session.loggedIn,
+		singlePost,
+		editPost: true,
+	});
+});
 module.exports = router;

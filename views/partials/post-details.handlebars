@@ -17,14 +17,15 @@
 								{{dateFormatter createdAt}}
 							</div>
 							<div class="col-sm-6 col-12 text-center text-sm-right">
-								<button
-									class="btn btn-outline-info btn-sm edit-post-btn"
+								<a
+									href="/dashboard/{{id}}"
+									class="btn btn-outline-info btn-sm"
 									data-user-id="{{user_id}}"
 									data-post-id="{{id}}"
 								>
 									<i class="fas fa-edit"></i>
 									edit
-								</button>
+								</a>
 								<button
 									class="btn btn-outline-danger btn-sm delete-post-btn"
 									data-user-id="{{user_id}}"
