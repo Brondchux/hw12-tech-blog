@@ -2,6 +2,7 @@
 const postTitle = document.querySelector("#post-title");
 const postContent = document.querySelector("#post-content");
 const postBtn = document.querySelector("#post-btn");
+const updatePostBtn = document.querySelector("#update-post-btn");
 const deletePostBtns = document.querySelectorAll(".delete-post-btn");
 let alertMessage = document.querySelector("#alertMessage");
 
@@ -56,10 +57,30 @@ const createPost = async (event) => {
 	}
 };
 
+const updatePost = async (event) => {
+	event.preventDefault();
+	if (validateUserInputs() !== true) return;
+
+	const updatePostObj = {
+		title: postTitle.value,
+		content: postContent.value,
+		post_id: postContent.dataset.postId,
+		user_id: postContent.dataset.userId,
+	};
+	const response = await makeApiCall("PUT", updatePostObj);
+	alertMessage.textContent = response.message;
+	if (response && !response.error) {
+		redirectToPage("/dashboard");
+	}
+};
+
 // INTERACTIONS ==============================
 
 // Create post
 if (postBtn) postBtn.addEventListener("click", createPost);
+
+// Update post
+if (updatePostBtn) updatePostBtn.addEventListener("click", updatePost);
 
 // Delete post
 deletePostBtns.forEach((deletBtn) => {

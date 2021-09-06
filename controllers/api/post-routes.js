@@ -11,14 +11,14 @@ router.post("/", async (req, res) => {
 			responseBasket = {
 				status: res.status,
 				error: true,
-				message: "Unable to post post, try again.",
+				message: "Unable to post article, try again.",
 			};
 			return res.status(200).json(responseBasket);
 		}
 
 		responseBasket = {
 			error: false,
-			message: "Post posted!",
+			message: "Post successfully shared!",
 		};
 		return res.status(201).json(responseBasket);
 	} catch (error) {
@@ -27,6 +27,49 @@ router.post("/", async (req, res) => {
 			...req.body,
 			message:
 				"Something went wrong while posting your article! Please try again.",
+		};
+
+		return res.status(408).json(responseBasket);
+	}
+});
+
+// PUT: /api/post
+router.put("/", async (req, res) => {
+	let responseBasket;
+
+	try {
+		const updatePost = await Post.update(
+			{
+				title: req.body.title,
+				content: req.body.content,
+			},
+			{
+				where: {
+					id: req.body.post_id,
+					user_id: req.body.user_id,
+				},
+			}
+		);
+		if (!updatePost) {
+			responseBasket = {
+				status: res.status,
+				error: true,
+				message: "Unable to update post, try again.",
+			};
+			return res.status(200).json(responseBasket);
+		}
+
+		responseBasket = {
+			error: false,
+			message: "Post successully updated!",
+		};
+		return res.status(201).json(responseBasket);
+	} catch (error) {
+		responseBasket = {
+			error: true,
+			...req.body,
+			message:
+				"Something went wrong while updating your post! Please try again.",
 		};
 
 		return res.status(408).json(responseBasket);
