@@ -1,12 +1,13 @@
-{{!-- Import header --}}
-{{> header}}
+{{!-- Import header --}} {{> header}}
 
 <div class="container my-5">
 	<div class="row">
-		<div class="col-10">
-			<h3 class="text-capitalize">Hi {{userData.username}},</h3>
+		<div class="col-12 col-sm-8 col-lg-10">
+			<h3 class="text-capitalize">
+				<i class="far fa-user fa-lg"></i> Hi {{userData.username}}!
+			</h3>
 		</div>
-		<div class="col-2">
+		<div class="col-12 col-sm-4 col-lg-2">
 			<button class="btn btn-info form-control">
 				<i class="fas fa-plus"></i>
 				New Post
@@ -14,24 +15,30 @@
 		</div>
 	</div>
 
-	<div class="row mt-2 mb-5">
+	<div class="row mt-3 mb-5">
 		<div class="col-12">
-			<textarea id="commentBox" rows="4" data-post-id="{{postData.id}}" data-user-id="{{userId}}" class="form-control" placeholder="Add your comment"></textarea>
-			<button class="btn btn-info mt-2 btn-lg" id="commentBtn">Submit</button>
+			<input id="post-title" class="form-control" type="text" placeholder="Title">
+			<textarea
+				id="post-content"
+				rows="4"
+				data-post-id="{{postData.id}}"
+				data-user-id="{{userId}}"
+				class="form-control mt-2"
+				placeholder="Content"
+			></textarea>
+			<div class="mt-2 font-italic" id="alertMessage"></div>
+			<button class="btn btn-info mt-2" data-user-id="{{userData.id}}" id="post-btn">
+				Share Post <i class="fas fa-paper-plane"></i>
+			</button>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-12">
-			{{#each userPosts as |post|}}
-				{{> post-details}}
-			{{/each}}
+			{{#each userPosts as |post|}} {{> post-details}} {{/each}}
 		</div>
 	</div>
 </div>
 
-{{!-- Import footer --}}
-{{> footer}}
-
-{{! Custom Post JS }}
+{{!-- Import footer --}} {{> footer}} {{! Custom Post JS }}
 <script src="/assets/js/post.js"></script>

@@ -24,6 +24,7 @@ router.post("/", async (req, res) => {
 	} catch (error) {
 		responseBasket = {
 			error: true,
+			...req.body,
 			message:
 				"Something went wrong while posting your article! Please try again.",
 		};

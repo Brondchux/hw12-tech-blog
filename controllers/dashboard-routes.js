@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
 			where: {
 				user_id: req.session.user.id,
 			},
+			order: [["id", "DESC"]],
 			include: [{ model: User, attributes: ["username"] }],
 		});
 		userPosts = userPostsData.map((post) => {

@@ -1,13 +1,32 @@
 // DEPENDENCIES ==============================
-const editPostBtns = document.querySelectorAll(".editPostBtn");
-const deletePostBtns = document.querySelectorAll(".deletePostBtn");
+const postTitle = document.querySelector("#post-title");
+const postContent = document.querySelector("#post-content");
+const postBtn = document.querySelector("#post-btn");
+const editPostBtns = document.querySelectorAll(".edit-post-btn");
+const deletePostBtns = document.querySelectorAll(".delete-post-btn");
+let alertMessage = document.querySelector("#alertMessage");
 
 // DATA ==============================
 
 // FUNCTIONS ==============================
-const makeApiCall = async (bodyObj) => {
+const checkValues = (field) => {
+	return field && field.length > 0;
+};
+
+// TODO: refactor me to maintain a DRY code
+const validateUserInputs = () => {
+	alertMessage.textContent = "";
+	alertMessage.classList.add("text-info");
+	if (!checkValues(postTitle.value))
+		return (alertMessage.textContent = "Post title is required!");
+	if (!checkValues(postContent.value))
+		return (alertMessage.textContent = "The post content is missing!");
+	return true;
+};
+
+const makeApiCall = async (method, bodyObj) => {
 	const response = await fetch(`/api/post`, {
-		method: "DELETE",
+		method,
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -22,15 +41,35 @@ const redirectToPage = (pageName) => {
 	}, 200);
 };
 
+const createPost = async (event) => {
+	event.preventDefault();
+	if (validateUserInputs() !== true) return;
+
+	const postObj = {
+		title: postTitle.value,
+		content: postContent.value,
+		user_id: postBtn.dataset.userId,
+	};
+	const response = await makeApiCall("POST", postObj);
+	alertMessage.textContent = response.message;
+	if (response && !response.error) {
+		redirectToPage("/dashboard");
+	}
+};
+
 // INTERACTIONS ==============================
+
+// Create post
+postBtn.addEventListener("click", createPost);
+
+// Delete post
 deletePostBtns.forEach((deletBtn) => {
 	const postObj = {
 		post_id: deletBtn.dataset.postId,
 		user_id: deletBtn.dataset.userId,
 	};
 	deletBtn.addEventListener("click", async () => {
-		let response = await makeApiCall(postObj);
-		// console.log("api-call-response: ", response);
+		const response = await makeApiCall("DELETE", postObj);
 		if (response && !response.error) {
 			redirectToPage("/dashboard");
 		}
