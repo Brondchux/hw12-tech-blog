@@ -8,15 +8,15 @@ This application provides the user a platform to communicate technology stories.
 
 ## Table of Content
 
-1. [Project Description](https://github.com/Brondchux/hw11-ecommerce-backend#project-description)
-2. [Author Info](https://github.com/Brondchux/hw11-ecommerce-backend#author-info)
-3. [User Story](https://github.com/Brondchux/hw11-ecommerce-backend#user-story)
-4. [Acceptance Criteria](https://github.com/Brondchux/hw11-ecommerce-backend#acceptance-criteria)
-5. [Mock-Up Preview](https://github.com/Brondchux/hw11-ecommerce-backend#mock-up-preview)
-6. [Useful Links](https://github.com/Brondchux/hw11-ecommerce-backend#useful-links)
-7. [Tech Stack](https://github.com/Brondchux/hw11-ecommerce-backend#tech-stack)
-8. [Credits](https://github.com/Brondchux/hw11-ecommerce-backend#credits)
-9. [License](https://github.com/Brondchux/hw11-ecommerce-backend#license)
+1. [Project Description](https://github.com/Brondchux/hw12-tech-blog#project-description)
+2. [Author Info](https://github.com/Brondchux/hw12-tech-blog#author-info)
+3. [User Story](https://github.com/Brondchux/hw12-tech-blog#user-story)
+4. [Acceptance Criteria](https://github.com/Brondchux/hw12-tech-blog#acceptance-criteria)
+5. [Mock-Up Preview](https://github.com/Brondchux/hw12-tech-blog#mock-up-preview)
+6. [Useful Links](https://github.com/Brondchux/hw12-tech-blog#useful-links)
+7. [Tech Stack](https://github.com/Brondchux/hw12-tech-blog#tech-stack)
+8. [Credits](https://github.com/Brondchux/hw12-tech-blog#credits)
+9. [License](https://github.com/Brondchux/hw12-tech-blog#license)
 
 ---
 
@@ -90,9 +90,8 @@ The following animation demonstrates the application functionality:
 
 ## Useful Links
 
-1. 🗂 [Click me to view github repository for this project](https://github.com/Brondchux/hw11-ecommerce-backend/)
-2. 🌍 [Click me to view deployed application via heroku](https://live-hw10-employee-management.herokuapp.com/)
-3. 📺 [Click me to view application functionality video](https://drive.google.com/file/d/1jxfZMzc1CL2wbDqvFW79Yg0kr4RioqQY/view)
+1. 🗂 [Click me to view github repository for this project](https://github.com/Brondchux/hw12-tech-blog/)
+2. 🌍 [Click me to view deployed application via heroku](https://live-hw12-tech-blog.herokuapp.com/)
 
 ---
 
